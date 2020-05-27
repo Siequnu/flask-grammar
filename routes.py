@@ -1,16 +1,11 @@
-from flask import render_template, flash, redirect, url_for, request, abort, current_app, session, Response
+from flask import render_template, current_app, session
 from flask_login import current_user, login_required
 
-from app.grammar import bp, forms
-from app.grammar.forms import GrammarSubmissionForm
-
-from app.files import models
-from app.models import Assignment, Upload, Comment, Turma, User, AssignmentTaskFile, Enrollment, PeerReviewForm, CommentFileUpload, Lesson, AttendanceCode, LessonAttendance, GrammarCheck
-from wtforms import SubmitField
-import app.models
+from . import bp
+from .forms import GrammarSubmissionForm
+from .models import GrammarCheck
 
 from app import db
-import requests
 from datetime import datetime
 
 import ProWritingAidSDK
