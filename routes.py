@@ -36,5 +36,5 @@ def check_grammar():
 		api_request = ProWritingAidSDK.TextAnalysisRequest(body, ["grammar"], "General", "en")
 		api_response = api_instance.post(api_request)
 	
-		return render_template('grammar/check_grammar.html', form = form, api_response = api_response, body = body) 
-	return render_template('grammar/check_grammar.html', form = form) 
+		return render_template('check_grammar.html', form = form, api_response = api_response, body = body) 
+	return render_template('check_grammar.html', form = form) 

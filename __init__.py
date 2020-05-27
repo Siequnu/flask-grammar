@@ -1,5 +1,5 @@
 from flask import Blueprint
 
-bp = Blueprint('grammar', __name__, template_folder='templates')
+bp = Blueprint('grammar', __name__, template_folder = 'templates')
 
-from app.grammar import routes, forms, models
+from . import routes, forms, models
