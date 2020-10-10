@@ -2,7 +2,7 @@
 {% from 'bootstrap/form.html' import render_form %}
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col">
       <h1><i class="fa fa-spell-check"></i> Grammar checker</h1>
     </div>
   </div>
@@ -26,20 +26,18 @@
 
   {% for tag in api_response.result.tags %}
   <p>
-  <div class="card">
-    <div class="card-body">
-      {% set end_pos = tag.end_pos %}
-      <h6 class="card-subtitle mb-2 text-muted">...{{body[end_pos-12:end_pos+6]}}...</h6>
-      {{tag.hint}}
+    <div class="card">
+      <div class="card-body">
+        {% set end_pos = tag.end_pos %}
+        <h6 class="card-subtitle mb-2 text-muted">...{{body[end_pos-12:end_pos+6]}}...</h6>
+        {{tag.hint}}
 
+      </div>
     </div>
-  </div>
   </p>
   {% endfor %}
 
   {% endif %}
-
-
-
+</div>
 </div>
 {% endblock %}
