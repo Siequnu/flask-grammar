@@ -1,4 +1,4 @@
-from flask import render_template, current_app, session
+from flask import render_template, current_app, session, redirect, url_for
 from flask_login import current_user, login_required
 
 from . import bp
@@ -21,6 +21,7 @@ api_instance = ProWritingAidSDK.TextApi(ProWritingAidSDK.ApiClient('https://api.
 @bp.route("/check/", methods=['GET', 'POST'])
 @login_required
 def check_grammar():
+	return redirect (url_for('grammar.editor'))
 	form = GrammarSubmissionForm()
 	if form.validate_on_submit():
 		new_grammar_check = GrammarCheck(user_id = current_user.id, timestamp = datetime.now())
@@ -33,3 +34,13 @@ def check_grammar():
 	
 		return render_template('check_grammar.html', form = form, api_response = api_response, body = body) 
 	return render_template('check_grammar.html', form = form) 
+
+# Beyond grammar editor
+@bp.route("/editor/", methods=['GET', 'POST'])
+@login_required
+def editor():
+	return render_template('editor.html') 
+
+
+	
+	

@@ -1,0 +1,46 @@
+{% extends "header.html" %}
+{% block app_content %}
+{% from 'bootstrap/form.html' import render_form %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1><i class="fa fa-spell-check"></i> Grammar check</h1>
+    </div>
+  </div>
+  <h5>Paste your work in here to check for grammar mistakes.</h5>
+  <hr>
+  <style>
+    textarea {width: 100%; min-height: 300px;}
+  </style>
+  <textarea>
+
+    </textarea>
+
+</div>
+
+
+<script src="/static/js/lib/beyondgrammar/bundle.js"></script>
+<script>
+  const settings = {
+    service: {
+      apiKey: "{{config['BEYONG_GRAMMAR_API_KEY']}}",
+      serviceUrl: '//rtg.prowritingaid.com'
+    },
+    grammar: {
+      languageFilter: null,
+      languageIsoCode: null,
+      checkStyle: true,
+      checkSpelling: true,
+      checkGrammar: true,
+      checkerIsEnabled: true
+    }
+  };
+  const GrammarChecker = window["BeyondGrammar"]["GrammarChecker"];
+  const $textarea = document.querySelector('textarea');
+  const checker = new GrammarChecker($textarea, settings.service, settings.grammar);
+
+  checker.init()
+    .then(() => checker.activate())
+</script>
+{% endblock %}
